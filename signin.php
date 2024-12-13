@@ -1,5 +1,5 @@
 <?php
-require_once("Services/userServices.php");
+require_once("Services/signin.php");
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +27,8 @@ require_once("Services/userServices.php");
         $password = $_POST["contrasena"];
         $img = $_FILES["imagen"];
         $dirTmp = $_FILES["imagen"]["tmp_name"];
-        $avatar = avatarDealer($img, $dirTmp, $numero);
+        $formato = strtolower(pathinfo($img, PATHINFO_EXTENSION));
+        $avatar = avatarDealer($dirTmp, $numero, $formato);
         signin($numero, $password, $avatar);
     }
     ?>
